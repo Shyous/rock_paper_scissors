@@ -2,8 +2,6 @@
         let humanScore = 0;
         let computerScore = 0;
 
-// write a function that randomly returns “rock”, “paper” or “scissors”.
-
 // GET a random value from the computer to link to the options rock, paper or scissors;
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3);
@@ -15,7 +13,6 @@ function getComputerChoice() {
         } else {
             return "scissors";
         }
-    
 }
 
 // GET a input from the user to choosse between rock, paper or scissors;
@@ -29,16 +26,10 @@ function getHumanChoice (){
 // Compare the computer choice with the use choice; Increase the score for the winner.
 
 // IF computerChoice equals user choice, it`s a draw;
-
 // IF computerChoice is Rock, and user choice is scissors, computer wins; OR
 // IF computerChoice is Paper, and user choice is rocks, computer wins; OR
 // IF computerChoic is Scissors, and user choice is paper, computer wins; OR
 // ELSE?
-// IF computerChoice is Rock, and user choice is paper, user wins; OR
-// IF computerChoice is Paper, and user choice is scissors, userwins; OR
-// IF computerChoice is Scissors, and user choise ir rocks, user wins; OR
-// SHOW message "You win for each IF.
-
 
 function playRound (computerChoice, humanChoice) {
     if (computerChoice === humanChoice) {
@@ -48,18 +39,17 @@ function playRound (computerChoice, humanChoice) {
     else if ((computerChoice === "rock" && humanChoice === "scissors") ||
             (computerChoice === "paper" && humanChoice === "rock") ||
             (computerChoice === "scissors" && humanChoice === "paper")) {
-                console.log("You lose!"  + computerChoice + "beats" + humanChoice);
+                console.log("You lose! "  + computerChoice + "beats " + humanChoice);
                 computerScore++;
        }
     else {
-        console.log("You win!"  + computerChoice + "does not beat" + humanChoice);
+        console.log("You win! "  + computerChoice + "does not beat " + humanChoice);
         humanScore++;
     }   
   
 }
 
 //Play 5 rounds and count the score to win the game
-// WHILE count <=5, playRound
 
 function playGame() {
    let i = 1;
@@ -81,7 +71,6 @@ function playGame() {
     }
 }
 
-    // start the game
 playGame()
 
  if (humanScore > computerScore) {
