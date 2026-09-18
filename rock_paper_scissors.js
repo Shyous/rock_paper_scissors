@@ -1,10 +1,13 @@
 // PLaying against the computer the rock, paper and scissors game.
         let humanScore = 0;
         let computerScore = 0;
+        let humanChoice
+        let computerChoice
+        let rounds = 0;
 
 // GET a random value from the computer to link to the options rock, paper or scissors;
 function getComputerChoice() {
-    let computerChoice = Math.floor(Math.random() * 3);
+        computerChoice = Math.floor(Math.random() * 3);
 
         if (computerChoice === 0) {
             return "rock";
@@ -17,10 +20,9 @@ function getComputerChoice() {
 
 // GET a input from the user to choosse between rock, paper or scissors;
 
-function getHumanChoice (){
-    let humanChoice = prompt("Choose: Rock, Paper or Scissors.");
-    // The comparations have to match with all lower cases
-    return humanChoice.toLowerCase();
+function getHumanChoice (choice){
+        humanChoice = choice;
+        return humanChoice.toLowerCase();
 }
 
 // Compare the computer choice with the use choice; Increase the score for the winner.
@@ -32,7 +34,7 @@ function getHumanChoice (){
 // ELSE?
 
 function playRound (computerChoice, humanChoice) {
-    if (computerChoice === humanChoice) {
+    if (computerChoice === humanChoice) { 
         console.log("A draw! " + computerChoice + "is equal " + humanChoice +"." );
     }
 
@@ -48,35 +50,43 @@ function playRound (computerChoice, humanChoice) {
     }   
   
 }
+//para cada botao, ao ser clicar, pega seu id
+const buttons = document.querySelectorAll("button");
 
-//Play 5 rounds and count the score to win the game
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
 
-function playGame() {
-   let i = 1;
-// Wrong! You have to add the functions to the loop to make them work 5 times.
-    while (i <= 5) {
+        //stop after 5 rounds
+        if (rounds >=5){
+                return;
+        }
+            getHumanChoice(button.id);
+            computerChoice = getComputerChoice();
 
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
+             console.log("Computer chose: " + computerChoice);
+             console.log("You chose: " + humanChoice);
 
-        console.log("Computer chose: " + computerChoice);
-        console.log("You chose: " + humanChoice);
+            playRound(computerChoice, humanChoice);
+            rounds++;
 
-        playRound(computerChoice, humanChoice);
+            let result = document.querySelector(`#result`);
 
-        console.log("Computer Score: " + computerScore);
-        console.log("Your Score: " + humanScore);
+            result.textContent = `Round: ${rounds}.`;
+            result.textContent += "  Computer Score: " + computerScore;
+            result.textContent += "  Your Score: " + humanScore;
 
-        i++;
-    }
-}
+            if (rounds ===5) {
+                let winner = document.querySelector("#winner");
 
-playGame()
+                if (computerScore > humanScore) {
+                    winner.textContent = "Computer wins!";
+                } else if (humanScore > computerScore) {
+                    winner.textContent = "You win!";
+                } else {
+                    winner.textContent = "It's a draw!";
+            }}
 
- if (humanScore > computerScore) {
-        console.log("You won the game!");
-    } else if (computerScore > humanScore) {
-        console.log("Computer won the game!");
-    } else {
-        console.log("The game is a draw!");
-    }
+
+        })
+    })
+
